@@ -4,7 +4,7 @@ import ReceiptList from './components/receipt-list';
 import ReceiptUpload from './components/receipt-upload';
 import Logo from './components/logo'; // Assuming logo was copied
 import { Button } from './components/ui/button';
-import { Card, CardHeader, CardTitle, CardContent, CardDescription } from './components/ui/card';
+import { Card, CardContent } from './components/ui/card';
 import { Input } from './components/ui/input';
 import {
   Dialog,
@@ -25,7 +25,8 @@ function App() {
     if (!uid) return;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:8787/api/receipts', {
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+      const res = await fetch(`${API_BASE_URL}/api/receipts`, {
         headers: { 'X-User-ID': uid }
       });
       if (res.ok) {
@@ -46,7 +47,8 @@ function App() {
   const handleDelete = async (id: string) => {
     if (!uid) return;
     try {
-      const res = await fetch(`http://localhost:8787/api/receipts/${id}`, {
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+      const res = await fetch(`${API_BASE_URL}/api/receipts/${id}`, {
         method: 'DELETE',
         headers: { 'X-User-ID': uid }
       });

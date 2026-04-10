@@ -28,12 +28,24 @@ import {
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import type { Receipt } from '@/types';
+export interface Receipt {
+  id: string;
+  companyName: string;
+  description: string;
+  date: string;
+  gst: number;
+  pst: number;
+  totalAmount: number;
+  image: string;
+  imagePath: string;
+}
 
 type ReceiptListProps = {
   receipts: Receipt[];
   onDeleteReceipt: (id: string) => void;
 };
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export default function ReceiptList({ receipts, onDeleteReceipt }: ReceiptListProps) {
   const formatCurrency = (amount: string | null) => {
@@ -157,9 +169,9 @@ export default function ReceiptList({ receipts, onDeleteReceipt }: ReceiptListPr
                               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 py-4">
                                 <div className="relative w-full h-[60vh] rounded-lg overflow-hidden border bg-black flex items-center justify-center">
                                     <img
-                                      src={receipt.image}
-                                      alt={`Receipt from ${receipt.companyName}`}
-                                      className="object-contain w-full h-full"
+                                      src={`${API_BASE_URL}${receipt.image}`}
+                                      alt="Receipt"
+                                      className="max-h-full max-w-full object-contain"
                                     />
                                 </div>
                                 <div className="space-y-4">

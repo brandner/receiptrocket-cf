@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { UploadCloud, X, FileText, CheckCircle, Camera, RefreshCw, Loader2, AlertCircle } from 'lucide-react';
+import { UploadCloud, X, FileText, CheckCircle, Camera, RefreshCw, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -82,7 +82,8 @@ export default function ReceiptUpload({ onUploadSuccess }: ReceiptUploadProps) {
       const formData = new FormData();
       formData.append('photo', selectedFile);
       
-      const response = await fetch('http://localhost:8787/api/upload', {
+      const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+      const response = await fetch(`${API_BASE_URL}/api/upload`, {
         method: 'POST',
         headers: {
           'X-User-ID': uid
