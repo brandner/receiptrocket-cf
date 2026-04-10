@@ -9,7 +9,7 @@ compatibility_flags = ["nodejs_compat"]
 [[d1_databases]]
 binding = "DB"
 database_name = "receipt-rocket-db"
-database_id = "local-d1-id" 
+database_id = "4325534b-417c-4894-8854-680f7c0e8810" 
 
 [[r2_buckets]]
 binding = "RECEIPTS_BUCKET"
