@@ -1,0 +1,19 @@
+name = "receipt-rocket-worker"
+main = "src/index.ts"
+compatibility_date = "2024-04-05"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Any environment variables here
+
+[[d1_databases]]
+binding = "DB"
+database_name = "receipt-rocket-db"
+database_id = "local-d1-id" 
+
+[[r2_buckets]]
+binding = "RECEIPTS_BUCKET"
+bucket_name = "receipt-rocket-receipts"
+
+[ai]
+binding = "AI"
